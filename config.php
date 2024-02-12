@@ -8,7 +8,7 @@
 
 use humhub\components\Application;
 use humhub\modules\user\controllers\AccountController;
-use humhub\modules\user\widgets\AccountMenu;
+use humhub\modules\user\widgets\AccountProfileMenu;
 
 /** @noinspection MissedFieldInspection */
 return [
@@ -17,7 +17,7 @@ return [
     'namespace' => 'humhub\modules\blockprofilechanges',
     'events' => [
         [AccountController::class, AccountController::EVENT_BEFORE_ACTION, ['\humhub\modules\blockprofilechanges\Events', 'onControllerAction']],
-        [AccountMenu::class, AccountMenu::EVENT_BEFORE_RUN, ['\humhub\modules\blockprofilechanges\Events', 'onAccountMenu']]
+        [AccountProfileMenu::class, AccountProfileMenu::EVENT_BEFORE_RUN, ['\humhub\modules\blockprofilechanges\Events', 'onAccountProfileMenu']]
     ]
 ];
 ?>

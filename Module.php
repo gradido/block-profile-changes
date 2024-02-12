@@ -18,9 +18,12 @@ class Module extends \humhub\components\Module
      */
     public $forbiddenActions = [
         'account.change-email',
-        'account.change-password',
-        'account.delete',
-        'account.edit',
+    ];
+
+    public $removeMenuEntries = [
+        'AccountProfileMenu' => [
+            '/user/account/change-email'
+        ]
     ];
 
     /**
