@@ -8,6 +8,7 @@
 namespace humhub\modules\blockprofilechanges;
 
 use humhub\components\Controller;
+use humhub\modules\user\widgets\AccountMenu;
 use humhub\modules\user\widgets\AccountProfileMenu;
 use Yii;
 use yii\base\ActionEvent;
@@ -28,6 +29,20 @@ class Events
         if (in_array($controller->id . '.' . $event->action->id, $module->forbiddenActions)) {
             $event->isValid = false;
             $event->result = Yii::$app->response->redirect(['/activity/user']);
+        }
+    }
+
+    public static function onAccountMenu(WidgetEvent $event)
+    {
+        /** @var AccountMenu $accountMenu */
+        $accountProfileMenu = $event->sender;
+
+        /** @var Module $module */
+        $module = Yii::$app->getModule('block-profile-changes');
+        if(isset($module->removeMenuEntries['AccountMenu'])) {
+            foreach($module->removeMenuEntries['AccountMenu'] as $url) {
+                $accountProfileMenu->deleteItemByUrl(Url::to([$url]));
+            }
         }
     }
 
